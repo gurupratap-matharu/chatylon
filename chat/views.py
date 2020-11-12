@@ -6,7 +6,11 @@ from users.models import CustomUser
 CustomUser = get_user_model()
 
 
-class HomePageView(ListView, LoginRequiredMixin):
+class HomePageView(LoginRequiredMixin, ListView):
     model = CustomUser
     context_object_name = 'user_list'
     template_name = 'chat/home.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.exclude(email=self.request.user.email)
