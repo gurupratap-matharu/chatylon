@@ -11,15 +11,16 @@
 
 - App suggestion based on interview assignment
 - Deployment with docker on heroku
-- Working with tools that are free for open source
+- Working with tools that are free and open source
 - Working with chat based mechanism using django
 
 ## Features ✨
 
 - Dockerized app with services for web and db
-- Modular architecture for separation of concerns
-- Ability to chat with all users and save historic chat
+- Modular architecture with separation of concerns
+- Ability to chat with all users and save historic chats
 - Register on the platform with email
+- Receive notifications and email confirmations on signup
 - Account and profile management
 - Easily extendable with API interface
 
@@ -33,3 +34,6 @@ or simply
 
 `make build`
 
+## Licence
+
+MIT License
