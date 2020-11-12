@@ -8,6 +8,11 @@ verify_ssl = true
 [packages]
 django = "*"
 psycopg2-binary = "*"
+django-allauth = "*"
+whitenoise = "*"
+dj-database-url = "*"
+django-crispy-forms = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.8"
