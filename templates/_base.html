@@ -1,0 +1,119 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/546230838a.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+    <title>{% block title %}Chatylon{% endblock title %}</title>
+</head>
+
+<body>
+    <header>
+        <!-- Fixed navbar -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center p-3 px-md-4\
+         mb-3 bg-white">
+            {% block appname %}
+            <a href="{% url 'pages:home' %}" class="navbar-brand my-0 font-weight-normal">
+                Chatylon
+            </a>
+            {% endblock appname %}
+
+            {% block navcenter %}{% endblock navcenter %}
+
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark text-decoration-none" href="{% url 'classroom_create' %}">
+                    <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+                </a>
+                <a class="p-2 text-dark text-decoration-none" href="{% url 'classroom_list' %}">
+                    <i class="fa fa-clipboard fa-lg" aria-hidden="true"></i>
+                </a>
+                <a class="p-2 text-dark text-decoration-none" href="{% url 'enroll' %}">
+                    <i class="fa fa-feather-alt fa-lg" aria-hidden="true"></i>
+                </a>
+                <a class="p-2 text-dark text-decoration-none" href="{% url 'polls:question_list' %}">
+                    <i class="fa fa-user-secret fa-lg" aria-hidden="true"></i>
+                </a>
+                {% if user.is_authenticated %}
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" style="width: 300px;">
+                        <div class="my-5">
+                            <p class="text-center">{{ user.get_full_name }}</p>
+                            <p class="text-center font-weight-light">{{ user.email }}</p>
+                            <a href="{{ user.profile.get_absolute_url }}">
+                                <p class="text-center font-weight-light">Profile</p>
+                            </a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item p-md-3 text-center">
+                            <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                            Signout
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <div class="d-flex justify-content-around p-md-3">
+                            <a href="{% url 'pages:feedback' %}">
+                                <button type="submit" class="btn btn-light btn-sm">
+                                    <small>Feedback</small>
+                                </button>
+                            </a>
+                            <a href="">
+                                <button type="submit" class="btn btn-light btn-sm">
+                                    <small>Privacy</small>
+                                </button>
+                            </a>
+                            <a href="">
+                                <button type="submit" class="btn btn-light btn-sm">
+                                    <small>Terms of service</small>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                {% else %}
+                <a class="p-2 text-dark text-decoration-none" href="{% url 'account_login' %}">
+                    <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-light" href="{% url 'account_signup' %}">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+
+            </nav>
+        </div>
+    </header>
+    <div class="container-fluid">
+        {% include '_alert.html' %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script>$('.toast').toast('show')</script>
+    {% block js %}{% endblock js %}
+</body>
+
+</html>
