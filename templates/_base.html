@@ -31,17 +31,9 @@
             {% block navcenter %}{% endblock navcenter %}
 
             <nav class="my-2 my-md-0 mr-md-3">
-                <a class="p-2 text-dark text-decoration-none" href="">
-                    <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
-                </a>
-                <a class="p-2 text-dark text-decoration-none" href="">
-                    <i class="fa fa-clipboard fa-lg" aria-hidden="true"></i>
-                </a>
-                <a class="p-2 text-dark text-decoration-none" href="">
-                    <i class="fa fa-feather-alt fa-lg" aria-hidden="true"></i>
-                </a>
-                <a class="p-2 text-dark text-decoration-none" href="">
-                    <i class="fa fa-user-secret fa-lg" aria-hidden="true"></i>
+
+                <a class="p-2 text-dark text-decoration-none" href="{{ user.profile.get_absolute_url }}">
+                    <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                 </a>
                 {% if user.is_authenticated %}
                 <div class="btn-group">

@@ -1,24 +1,52 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
-
 {% block title %}Profile{% endblock title %}
-{% block appname %}Profile{% endblock appname %}
 
 {% block content %}
-<div class="container">
-    <a href="{% url 'pages:home' %}" class="text-dark text-decoration-none">
-        <div class="d-flex">
-            <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
-            <p class="lead ml-2">Home</p>
+<div class="row justify-content-center mt-5">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="card">
+            {% if profile.photo %}
+            <img class="card-img-top" src="{{ profile.photo.url }}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ request.user }}</h5>
+                <p class="card-text">
+                    <small class="text-muted">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        {{ user.email }}
+                    </small>
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        <i class="fa fa-clock" aria-hidden="true"></i>
+                        Last updated 3 mins ago
+                    </small>
+                </p>
+                <p class="card-text">
+                    <i class="fa fa-map" aria-hidden="true"></i>
+                    {{ profile.location }}
+                </p>
+                <p class="card-text">
+                    <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+                    {% if profile.country %}
+                    {{ profile.country.name }} <img src="{{ profile.country.flag }}" alt="country-flag">
+                    {% endif %}
+                </p>
+                <p class="card-text">
+                    <i class="fa fa-calendar-alt" aria-hidden="true"></i>
+                    {{ profile.birth_date }}
+                </p>
+                <p class="card-text">
+                    <i class="fa fa-chalkboard" aria-hidden="true"></i>
+                    {{ profile.bio }}
+                </p>
+            </div>
+            <div class="card-footer bg-white border-top-0">
+                <a href="{% url 'chat:home' %}" class="btn btn-light">Cancel</a>
+                <a href="{{ profile.get_update_url }}" class="btn btn-success">Edit</a>
+            </div>
         </div>
-    </a>
-    <hr class="p-2">
-    <ul>
-        <li>User: {{ profile.user }}</li>
-        <li>Bio: {{ profile.bio }}</li>
-        <li>Country: {{ profile.country.name }} <img src="{{ profile.country.flag }}" alt=""></li>
-        <li>Icon: <i class="{{ country.flag_css }}"></i></li>
-        <li>Birthday: {{ profile.birth_date }}</li>
-    </ul>
+    </div>
 </div>
 {% endblock content %}
