@@ -9,4 +9,4 @@ release:
     command:
         - python manage.py collectstatic --noinput
 run:
-    web: gunicorn main.wsgi
+    web: gunicorn core.wsgi
