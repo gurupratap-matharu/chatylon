@@ -8,8 +8,8 @@
         <p class="display-4">Contacts</p>
         <p class="lead">{{ user_list.count }} contacts</p>
     </div>
-    {% for user in user_list %}
-    {{ user }}
+    {% for u in user_list %}
+    <a href="{% url 'chat:chatroom_detail' user_1=request.user.id user_2=u.id %}">{{ u }}</a>
     <hr>
     {% endfor %}
 </div>
