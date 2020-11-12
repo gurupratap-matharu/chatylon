@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     # Local
     'users.apps.UsersConfig',
+    'chat.apps.ChatConfig',
 ]
 
 MIDDLEWARE = [
@@ -191,8 +192,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-LOGIN_REDIRECT_URL = 'dashboard'
-ACCOUNT_LOGOUT_REDIRECT = 'dashboard'
+LOGIN_REDIRECT_URL = 'chat:home'
+ACCOUNT_LOGOUT_REDIRECT = 'chat:home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'admin@market.com'

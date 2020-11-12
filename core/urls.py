@@ -24,5 +24,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     # Local apps
+    path('', include('chat.urls')),
     path('profile/', include('users.urls')),
 ]
