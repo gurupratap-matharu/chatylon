@@ -19,13 +19,18 @@ class Profile(models.Model):
     location = models.CharField(max_length=200, blank=True)
     country = CountryField(blank_label='(select country)')
     birth_date = models.DateField(null=True, blank=True)
+    photo = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
+
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name='profile')
 
     def __str__(self):
-        return self.bio
+        return f'Profile for user {self.user.username}'
 
     def get_absolute_url(self):
         return reverse('profile_detail', args=[str(self.id)])
+
+    def get_update_url(self):
+        return reverse('profile_update', args=[str(self.id)])
 
 
 @receiver(post_save, sender=get_user_model())
