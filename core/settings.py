@@ -75,6 +75,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ROOT_URLCONF = 'core.urls'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
