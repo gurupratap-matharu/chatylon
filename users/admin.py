@@ -8,15 +8,13 @@ from users.models import Profile
 CustomUser = get_user_model()
 
 
-class ProfileInLine(admin.TabularInline):
-    model = Profile
-
-
 class ProfileAdmin(admin.ModelAdmin):
     model = Profile
+    list_display = ['user', 'birth_date', 'photo']
 
 
-admin.site.register(Profile, ProfileAdmin)
+class ProfileInLine(admin.TabularInline):
+    model = Profile
 
 
 class CustomUserAdmin(UserAdmin):
@@ -27,4 +25,5 @@ class CustomUserAdmin(UserAdmin):
     list_display = ['email', 'username', ]
 
 
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(CustomUser, CustomUserAdmin)
