@@ -18,6 +18,7 @@ django-extensions = "*"
 gunicorn = "*"
 django-countries = "*"
 factory-boy = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"
