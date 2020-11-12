@@ -1,0 +1,104 @@
+{% load i18n %}
+{% load account %}
+{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock head_title %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Confirm E-mail Address</title>
+    <!-- loader-->
+    <link href="{% static 'dashboard/css/pace.min.css' %}" rel="stylesheet" />
+    <script src="{% static 'dashboard/js/pace.min.js' %}"></script>
+    <!--favicon-->
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <!-- Bootstrap core CSS-->
+    <link href="{% static 'dashboard/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="{% static 'dashboard/css/animate.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="{% static 'dashboard/css/icons.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Custom Style-->
+    <link href="{% static 'dashboard/css/app-style.css' %}" rel="stylesheet" />
+
+</head>
+
+<body class="bg-theme bg-theme1">
+
+    <!-- start loader -->
+    <div id="pageloader-overlay" class="visible incoming">
+        <div class="loader-wrapper-outer">
+            <div class="loader-wrapper-inner">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end loader -->
+
+    <!-- Start wrapper-->
+    <div id="wrapper">
+
+        <div class="loader-wrapper">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="card card-authentication1 mx-auto my-5">
+            <div class="card-body">
+                <div class="card-content p-2">
+                    <div class="text-center">
+                        <img src="{% static 'dashboard/images/logo-icon.png' %}" alt="logo icon">
+                    </div>
+                    <div class="card-title text-uppercase text-center py-3">Sign In</div>
+                    <h1>{% trans "Confirm E-mail Address" %}</h1>
+
+                    {% if confirmation %}
+                    {% user_display confirmation.email_address.user as user_display %}
+
+                    <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a
+                            href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user
+                        {{ user_display }}.{% endblocktrans %}
+                    </p>
+                    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit">{% trans 'Confirm' %}</button>
+                    </form>
+                    {% else %}
+                    {% url 'account_email' as email_url %}
+                    <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a
+                            href="{{ email_url }}">issue a new
+                            e-mail confirmation request</a>.
+                        {% endblocktrans %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-footer text-center py-3">
+                <p class="text-warning mb-0">Do not have an account? <a href="{% url 'account_signup' %}"> Sign Up
+                        here</a></p>
+            </div>
+        </div>
+    </div>
+    <!--wrapper-->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+
+    <!-- sidebar-menu js -->
+    <script src="{% static 'dashboard/js/sidebar-menu.js' %}"></script>
+
+    <!-- Custom scripts -->
+    <script src="{% static 'dashboard/js/app-script.js' %}"></script>
+</body>
+
+</html>
