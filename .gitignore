@@ -1,5 +1,4 @@
 # Django #
-staticfiles/*
 *.log
 *.pot
 *.pyc
