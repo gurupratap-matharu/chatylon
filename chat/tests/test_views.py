@@ -34,11 +34,24 @@ class HomePageTests(TestCase):
 
 
 class ChatPageTests(TestCase):
+    def setUp(self):
+        self.user_1 = UserFactory()
+        self.user_2 = UserFactory()
+
     def test_chat_page_resolves_chatdetailview(self):
-        pass
+        chat_url = reverse('chat:chatroom_detail', args=[str(self.user_1.id), str(self.user_2.id)])
+        view = resolve(chat_url)
+        self.assertEqual(view.func.__name__, ChatDetailView.as_view().__name__)
 
     def test_chat_page_works_for_logged_in_user(self):
-        pass
+        self.client.force_login(self.user_1)
+        chat_url = reverse('chat:chatroom_detail', args=[str(self.user_1.id), str(self.user_2.id)])
+
+        response = self.client.get(chat_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'chat/chatroom_detail.html')
+        self.assertContains(response, 'Chat')
+        self.assertNotContains(response, 'Hi I should not be on this page!')
 
     def test_chat_page_redirects_for_anonymous_user(self):
         pass
