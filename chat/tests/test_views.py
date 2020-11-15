@@ -54,7 +54,8 @@ class ChatPageTests(TestCase):
         self.assertNotContains(response, 'Hi I should not be on this page!')
 
     def test_chat_page_redirects_for_anonymous_user(self):
-        pass
+        chat_url = reverse('chat:chatroom_detail', args=[str(self.user_1.id), str(self.user_2.id)])
 
-    def test_valid_post_data_adds_chat_to_chatroom(self):
-        pass
+        response = self.client.get(chat_url)
+        self.assertEqual(response.status_code, 302)
+        self.assertTemplateNotUsed(response, 'chat/chatroom_detail.html')
