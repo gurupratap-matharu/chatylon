@@ -5,7 +5,19 @@
 
 ## LIVE
 
-<https://midware.herokuapp.com/api/v1/>
+<https://chatylon.herokuapp.com>
+
+## Admin
+
+<https://chatylon.herokuapp.com/dj-admin/>
+
+<img src="https://github.com/gurupratap-matharu/chatylon/blob/master/staticfiles/img/admin.jpg" alt="admin" width="1920"/>
+
+## Chat
+
+<img src="https://github.com/gurupratap-matharu/midware/blob/master/staticfiles/img/chat.jpg" alt="chat" width="1920"/>
+<img src="https://github.com/gurupratap-matharu/midware/blob/master/staticfiles/img/home.jpg" alt="chat" width="1920"/>
+<img src="https://github.com/gurupratap-matharu/midware/blob/master/staticfiles/img/login.jpg" alt="chat" width="1920"/>
 
 ## Motivation 🎯
 
